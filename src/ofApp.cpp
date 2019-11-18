@@ -13,10 +13,16 @@ void ofApp::setup() {
 	grayBg.allocate(320, 240);
 	grayDiff.allocate(320, 240);
 	
+	// directional light
+	directionalLight.setDirectional();
+	directionalLight.setSpecularColor(ofColor(255));
+	directionalLight.setDiffuseColor(ofColor(255));
+	directionalLight.setAmbientColor(ofColor(100));
+
 	ofEnableDepthTest();
 	ofSetVerticalSync(true);
 	//ofBackground(70, 70, 70);
-	cam.setDistance(100);
+	cam.setDistance(10);
 
 	ofSetWindowTitle("Bezier3D");
 	gui.setup();
@@ -60,10 +66,10 @@ void ofApp::draw() {
 		ofSetColor(c);
 		ofDrawRectangle(r);
 	}
-	webCam.draw(0,0);
-	
-	gui.draw();
+	webCam.draw(1600,0);
 	cam.begin();
+	gui.draw();
+	
 	if (clearBtn) {
 		drawPressed = false;
 		controlPts.clear();
